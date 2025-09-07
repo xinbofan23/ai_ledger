@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <title>RootAgent Chat</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=TASA+Explorer:wght@400;500;700&display=swap" rel="stylesheet">
+
+
+</head>
+<body>
+  <h2>AI LEDGER</h2>
+  <div id="chat"></div>
+  <div class="input-area">
+  <input id="input" type="text" placeholder="Create/Modify/Report you record..." />
+  <button id="btn">
+    ➤
+  </button>
+  </div>
+
+
+  <script>
+    const chatBox = document.getElementById("chat");
+    const input = document.getElementById("input");
+    const btn = document.getElementById("btn");
+
+    function addMsg(cls, text) {
+      const div = document.createElement("div");
+      div.className = "msg " + cls;
+      div.innerText = text;
+      chatBox.appendChild(div);
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+
+    async function send() {
+  const text = input.value.trim();
+  if (!text) return;
+  addMsg("user",  text);
+  input.value = "";
+
+  try {
+    const resp = await fetch("/chat", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ message: text })
+    });
+
+    if (!resp.ok) {
+      const errText = await resp.text();
+      addMsg("err", "⚠️ Network or server error: " + errText);
+      return;
+    }
+
+    const data = await resp.json();
+    addMsg("bot", (data.reply ?? JSON.stringify(data)));
+
+  } catch (e) {
+    addMsg("err", "⚠️ Network or server error: " + e);
+  }
+}
+
+
+    btn.addEventListener("click", send);
+    input.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") send();
+    });
+  </script>
+</body>
+</html>

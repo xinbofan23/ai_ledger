@@ -1,0 +1,113 @@
+body {
+  font-family: "TASA Explorer", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400; 
+  font-style: normal;
+
+  max-width: 640px;
+  margin: 30px auto;
+}
+
+
+#chat {
+  border: 10px solid #66b3ff; 
+  padding: 12px;
+
+  background-color: #fff9e6; 
+  border-radius: 12px; 
+  font-weight: bold; 
+
+  min-height: 260px; 
+  box-sizing: border-box;
+  overflow: hidden;   
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  max-width: 640px; 
+  margin: 0 auto; 
+}
+
+h2 {
+  font-weight: 700;
+  font-size: 1.8em;
+  margin-bottom: 15px;
+  color: #1a73e8;
+  margin-left: 12px;
+}
+
+.msg {
+  display: block; 
+  max-width: 76%;
+  padding: 10px 14px;
+  border-radius: 18px;
+  font-weight: 500;
+  line-height: 1.45;
+  white-space: pre-wrap;
+  word-break: break-word;
+  margin: 0;
+}
+
+
+
+.input-area {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+
+  background: #fff;  
+  border: 2px solid #66b3ff; 
+  border-radius: 30px;
+  padding: 5px 10px;
+}
+
+.input-area input {
+  flex: 1;   
+  border: none; 
+  outline: none;
+  font-size: 14px;
+  padding: 8px 10px;
+  border-radius: 30px;        
+}
+
+.input-area button {
+  background: #1a73e8;         
+  border: none;
+  color: white;           
+  font-size: 16px;
+  border-radius: 50%;       
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 5px;
+  transition: background 0.2s;
+}
+
+.input-area button:hover {
+  background: #0c5fcd;      
+}
+
+.user {
+  align-self: flex-end;    
+  background: #4da6ff;
+  color: #fff;
+}
+
+
+.bot {
+  align-self: flex-start;  
+  background: #5cd65c;
+  color: #fff;
+}
+
+.err {
+  align-self: flex-start;
+  color: #d93025;
+  background: #ffe6e6;
+  border-radius: 10px;
+  padding: 8px 12px;
+}
